@@ -11,10 +11,10 @@ def gfg():
         with open('model_pkl', 'rb') as f:
             lr = pickle.load(f)
 
-        spend = request.form.get("spend")
-        administration = request.form.get("administration")
-        marketspend = request.form.get("marketspend")
-        profit = request.form.get("profit")
+        bathroom = request.form.get("no.of bathrooms")
+        bedroom = request.form.get("no.of bedrooms")
+        total_sqft = request.form.get("sqft_total")
+        price = request.form.get("price")
 
         statearr = []
 
@@ -31,10 +31,10 @@ def gfg():
 
 
         z = []
-        z.append(spend)
-        z.append(administration)
-        z.append(marketspend)
-        z.append(profit)
+        z.append(bathroom)
+        z.append(bedroom)
+        z.append(total_sqft)
+        z.append(price)
 
         z.extend(statearr)
 
@@ -42,7 +42,7 @@ def gfg():
 
         result = lr.predict([arr])
 
-        return render_template('form.html', prediction_text="Your profit is Rs. {:.2f}".format(result[0,0]))
+        return render_template('form.html', prediction_text="Your house_price is Rs. {:.2f}".format(result[0,0]))
 
 
     return render_template("form.html")
